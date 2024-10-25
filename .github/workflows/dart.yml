@@ -19,7 +19,11 @@ jobs:
         with:
           flutter-version: 3.24.0
       - run: flutter pub get
-      - run: flutter test
-      - run: flutter build apk
-      - run: flutter build appbundle
+      - run: flutter build apk --release
+      - run: flutter build appbundle --release
       - run: tree
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: build/
